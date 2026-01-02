@@ -1,0 +1,8 @@
+{
+  "json.schemaDownload.enable": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000
+}

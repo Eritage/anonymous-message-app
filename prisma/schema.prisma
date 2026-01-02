@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid()) // Auto-generate weird strings like 'a1b2-...'
+  username  String    @unique
+  password  String    // We will hash this later
+  createdAt DateTime  @default(now())
+  
+  // Relation: A user can receive many messages
+  messages  Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  
+  // Relation: Who receives this message?
+  recipientId String
+  recipient   User   @relation(fields: [recipientId], references: [id])
+}
