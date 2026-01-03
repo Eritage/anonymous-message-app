@@ -2,9 +2,11 @@
 FROM oven/bun:1 as base
 WORKDIR /usr/src/app
 
-# install dependencies
-COPY package.json bun.lockb ./
-RUN bun install --frozen-lockfile
+# 1. COPY ONLY package.json (Removed bun.lockb)
+COPY package.json ./
+
+# 2. RUN INSTALL WITHOUT LOCKFILE (Removed --frozen-lockfile)
+RUN bun install
 
 # generate prisma client
 COPY prisma ./prisma
